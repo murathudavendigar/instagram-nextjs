@@ -5,7 +5,7 @@ import Story from "./Story";
 const Stories = () => {
   const [randomUsers, setRandomUsers] = useState([]);
   useEffect(() => {
-    Array.from({ length: 10 }).forEach(() => {
+    Array.from({ length: 20 }).forEach(() => {
       USERS.push(createRandomUser());
     });
 

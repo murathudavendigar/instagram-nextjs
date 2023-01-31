@@ -1,26 +1,37 @@
+import { useEffect, useState } from "react";
+import { createRandomUser, RANDOM_POST } from "../utils/faker";
 import Post from "./Post";
 
 const posts = [
   {
-    id: "123",
+    userId: "123",
     username: "murathoncu",
-    userImg:
+    avatar:
       "https://pbs.twimg.com/profile_images/1589564512599932929/JuGsRJNz_400x400.jpg",
-    img: "https://img.freepik.com/free-photo/portrait-young-cheerful-girl-listening-music-headphones-isolated-gradient-pink-background-blue-neon-light_155003-45720.jpg?w=360",
+    postImg:
+      "https://img.freepik.com/free-photo/portrait-young-cheerful-girl-listening-music-headphones-isolated-gradient-pink-background-blue-neon-light_155003-45720.jpg?w=360",
     caption: "This is FAKE",
   },
 ];
 
 const Posts = () => {
+  const [postArr, setPostArr] = useState([]);
+  useEffect(() => {
+    Array.from({ length: 10 }).forEach(() => {
+      posts.push(createRandomUser());
+    });
+    setPostArr(posts);
+  }, []);
+
   return (
     <div>
-      {posts.map((post) => (
+      {postArr.map((post) => (
         <Post
-          key={post.id}
-          id={post.id}
+          key={post.userId}
+          id={post.userId}
           username={post.username}
-          userImg={post.userImg}
-          img={post.img}
+          userImg={post.avatar}
+          img={post.postImg}
           caption={post.caption}
         />
       ))}
