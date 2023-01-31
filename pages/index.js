@@ -1,16 +1,19 @@
 import Head from "next/head";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
     <>
       <Head>
         <title>Instagram | Captain Price</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="../public/favicon.ico" />
       </Head>
 
-      <h1 className="flex h-screen justify-center items-center">
-        Project Started
-      </h1>
+      {/* Header */}
+      <Header />
+      {/* Feed  */}
+
+      {/* Modal */}
     </>
   );
 }
