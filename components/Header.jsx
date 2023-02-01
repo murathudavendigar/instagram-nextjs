@@ -9,14 +9,22 @@ import {
 } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { modalState } from "../atoms/modalAtom";
 const Header = () => {
   const { data: session } = useSession();
+  const [open, setOpen] = useRecoilState(modalState);
+  // const open = useRecoilValue(modalState)  //! Read Only
+  const router = useRouter();
 
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
         {/* Left */}
-        <div className="relative hidden lg:inline-grid w-24">
+        <div
+          onClick={() => router.push("/")}
+          className="relative hidden lg:inline-grid w-24">
           <Image
             src="https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
             fill
@@ -24,7 +32,9 @@ const Header = () => {
             alt="Instagram"
           />
         </div>
-        <div className="relative w-10  lg:hidden flex-shtink-0 cursor-pointer">
+        <div
+          onClick={() => router.push("/")}
+          className="relative w-10  lg:hidden flex-shtink-0 cursor-pointer">
           <Image
             src="https://cdn-icons-png.flaticon.com/512/87/87390.png"
             fill
@@ -48,7 +58,7 @@ const Header = () => {
         </div>
         {/* Right */}
         <div className="flex items-center justify-end space-x-4">
-          <HomeIcon className="navButton" />
+          <HomeIcon onClick={() => router.push("/")} className="navButton" />
           <MenuIcon className="h-6 md:hidden cursor-pointer" />
           {session ? (
             <>
@@ -58,7 +68,10 @@ const Header = () => {
                   3
                 </div>
               </div>
-              <PlusCircleIcon className="navButton" />
+              <PlusCircleIcon
+                onClick={() => setOpen(true)}
+                className="navButton"
+              />
               <UserGroupIcon className="navButton" />
               <HeartIcon className="navButton" />
 
