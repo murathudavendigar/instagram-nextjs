@@ -15,7 +15,7 @@ export function createRandomUser() {
     // birthdate: faker.date.birthdate(),
     registeredAt: faker.date.past(),
     // location: faker.random.locale(),
-    companyName: faker.company.companyName(),
+    companyName: faker.company.name(),
     postImg: `https://source.unsplash.com/random/800x600?sig=${
       randomNumber + 1
     }`,

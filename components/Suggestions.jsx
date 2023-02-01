@@ -16,10 +16,8 @@ const Suggestions = () => {
         <h3 className="text-sm font-bold">Suggestions for you</h3>
         <button className="text-gray-600 font-semibold">See All</button>
       </div>
-      {suggestionsUsers.map((profile) => (
-        <div
-          key={profile.id}
-          className="flex items-center justify-between mt-3">
+      {suggestionsUsers.map((profile, index) => (
+        <div key={index} className="flex items-center justify-between mt-3">
           <img
             className="h-10 w-10 border p-[2px] rounded-full"
             src={profile.avatar}
