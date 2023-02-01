@@ -6,7 +6,7 @@ const signInPage = ({ providers }) => {
   return (
     <>
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14 text-center">
+      <div className="flex flex-col items-center justify-center min-h-screen -mt-[68px] py-2 px-14 text-center">
         <img
           className="w-80"
           src="https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
