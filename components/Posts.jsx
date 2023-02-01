@@ -1,38 +1,32 @@
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { createRandomUser, RANDOM_POST } from "../utils/faker";
+import { db } from "../firebase/firebase";
 import Post from "./Post";
 
-const posts = [
-  {
-    userId: "123",
-    username: "murathoncu",
-    avatar:
-      "https://pbs.twimg.com/profile_images/1589564512599932929/JuGsRJNz_400x400.jpg",
-    postImg:
-      "https://img.freepik.com/free-photo/portrait-young-cheerful-girl-listening-music-headphones-isolated-gradient-pink-background-blue-neon-light_155003-45720.jpg?w=360",
-    caption: "This is FAKE",
-  },
-];
-
 const Posts = () => {
-  const [postArr, setPostArr] = useState([]);
-  useEffect(() => {
-    Array.from({ length: 10 }).forEach(() => {
-      posts.push(createRandomUser());
-    });
-    setPostArr(posts);
-  }, []);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, "posts"), orderBy("timestamp", "desc")),
+        (snapshot) => {
+          setPosts(snapshot.docs);
+        }
+      ),
+    [db]
+  );
 
   return (
     <div>
-      {postArr.map((post) => (
+      {posts.map((post) => (
         <Post
-          key={post.userId}
-          id={post.userId}
-          username={post.username}
-          userImg={post.avatar}
-          img={post.postImg}
-          caption={post.caption}
+          key={post.id}
+          id={post.id}
+          username={post.data().username}
+          userImg={post.data().profileImg}
+          img={post.data().image}
+          caption={post.data().caption}
         />
       ))}
     </div>
