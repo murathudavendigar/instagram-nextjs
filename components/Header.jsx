@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   HeartIcon,
   MenuIcon,
+  MoonIcon,
   PaperAirplaneIcon,
   PlusCircleIcon,
   SearchIcon,
@@ -12,35 +13,62 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { modalState } from "../atoms/modalAtom";
+import { useTheme } from "next-themes";
+import { useState } from "react";
+
 const Header = () => {
+  const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
   const { data: session } = useSession();
   const [open, setOpen] = useRecoilState(modalState);
   // const open = useRecoilValue(modalState)  //! Read Only
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
   return (
-    <div className="shadow-sm border-b bg-white sticky top-0 z-50">
+    <div className="shadow-sm border-b bg-white text-black dark:bg-black dark:text-white sticky top-0 z-50">
       <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
         {/* Left */}
         <div
           onClick={() => router.push("/")}
           className="relative hidden lg:inline-grid w-24">
-          <Image
-            src="https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
-            fill
-            style={{ objectFit: "contain" }}
-            alt="Instagram"
-          />
+          {theme === "dark" ? (
+            <Image
+              src="https://i0.wp.com/www.christinasandsengen.com/wp-content/uploads/2014/09/instagram-logo-black-on-white.png"
+              fill
+              style={{ objectFit: "contain" }}
+              alt="Instagram"
+              loading="lazy"
+            />
+          ) : (
+            <Image
+              src="https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
+              fill
+              style={{ objectFit: "contain" }}
+              alt="Instagram"
+              loading="lazy"
+            />
+          )}
         </div>
         <div
           onClick={() => router.push("/")}
-          className="relative w-10  lg:hidden flex-shtink-0 cursor-pointer">
-          <Image
-            src="https://cdn-icons-png.flaticon.com/512/87/87390.png"
-            fill
-            style={{ objectFit: "contain" }}
-            alt="Instagram"
-          />
+          className="relative w-10 lg:hidden flex-shtink-0 cursor-pointer">
+          {theme === "dark" ? (
+            <Image
+              src="https://upload.wikimedia.org/wikipedia/commons/2/28/Instagram_logo.png"
+              fill
+              style={{ objectFit: "contain" }}
+              alt="Instagram"
+              loading="lazy"
+            />
+          ) : (
+            <Image
+              src="https://cdn-icons-png.flaticon.com/512/87/87390.png"
+              fill
+              style={{ objectFit: "contain" }}
+              alt="Instagram"
+              loading="lazy"
+            />
+          )}
         </div>
 
         {/* Middle */}
@@ -50,7 +78,7 @@ const Header = () => {
               <SearchIcon className="h-5 w-5 text-gray-500" />
             </div>
             <input
-              className="bg-gray-50 block w-full pl-10 sm:text-sm border-gray-300 rounded-md focus:ring-black focus:border-black"
+              className="bg-gray-50 dark:bg-[#262626] dark:border-[#262626] block w-full pl-10 sm:text-sm border-gray-300 rounded-md focus:ring-black focus:border-black"
               type="text"
               placeholder="Search"
             />
@@ -59,7 +87,11 @@ const Header = () => {
         {/* Right */}
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon onClick={() => router.push("/")} className="navButton" />
-          <MenuIcon className="h-6 md:hidden cursor-pointer" />
+          <MenuIcon
+            className="h-6 md:hidden cursor-pointer"
+            onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
+          />
+
           {session ? (
             <>
               <div className="relative navButton">
@@ -74,6 +106,10 @@ const Header = () => {
               />
               <UserGroupIcon className="navButton" />
               <HeartIcon className="navButton" />
+              <MoonIcon
+                className="navButton"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              />
 
               <img
                 onClick={signOut}
@@ -86,6 +122,45 @@ const Header = () => {
             <button onClick={() => signIn()}>Sign In</button>
           )}
         </div>
+      </div>
+      <div className="transition-all duration-200 overflow-x-hidden overflow-y-hidden">
+        {isOpenBurgerMenu && (
+          <div className="transition-all space-y-2">
+            <div className="burgerDiv" onClick={() => router.push("/")}>
+              <HomeIcon className="burgerButton" />
+              <p className="text-base font-semibold">Home</p>
+            </div>
+            {session && (
+              <>
+                <div className="burgerDiv">
+                  <PaperAirplaneIcon className="burgerButton rotate-45" />
+                  <p className="text-base font-semibold">Messages</p>
+                </div>
+                <div className="burgerDiv">
+                  <PlusCircleIcon
+                    onClick={() => setOpen(true)}
+                    className="burgerButton"
+                  />
+                  <p className="text-base font-semibold">Upload Post</p>
+                </div>
+                <div className="burgerDiv">
+                  <UserGroupIcon className="burgerButton" />
+                  <p className="text-base font-semibold">Discover</p>
+                </div>
+                <div className="burgerDiv">
+                  <HeartIcon className="burgerButton" />
+                  <p className="text-base font-semibold">Notifications</p>
+                </div>
+                <div
+                  className="burgerDiv"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                  <MoonIcon className="burgerButton" />
+                  <p className="text-base font-semibold">Dark / Light Mode</p>
+                </div>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
