@@ -27,7 +27,7 @@ import InputEmoji from "react-input-emoji";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 
-const Post = ({ id, username, userImg, img, caption }) => {
+const Post = ({ id, username, userImg, img, caption, timestamp }) => {
   const { data: session } = useSession();
   const { theme } = useTheme();
   const router = useRouter();
@@ -102,7 +102,10 @@ const Post = ({ id, username, userImg, img, caption }) => {
           <p
             className="flex-1 font-bold cursor-pointer"
             onClick={() => router.push(`/profile/${username}`)}>
-            {username}
+            {username} •{" "}
+            <Moment fromNow className="pl-1 font-semibold text-sm">
+              {timestamp.toDate()}
+            </Moment>
           </p>
         ) : (
           <p className="flex-1 font-bold">{username}</p>
