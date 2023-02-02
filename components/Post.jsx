@@ -23,9 +23,14 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
 import Moment from "react-moment";
+import InputEmoji from "react-input-emoji";
+import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 
 const Post = ({ id, username, userImg, img, caption }) => {
   const { data: session } = useSession();
+  const { theme } = useTheme();
+  const router = useRouter();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -85,7 +90,7 @@ const Post = ({ id, username, userImg, img, caption }) => {
   };
 
   return (
-    <div className="bg-white my-7 border rounded-sm">
+    <div className="bg-white text-black dark:bg-black dark:text-white dark:border-black my-7 border rounded-sm">
       {/* Header */}
       <div className="flex items-center p-5 ">
         <img
@@ -93,7 +98,15 @@ const Post = ({ id, username, userImg, img, caption }) => {
           className="rounded-full h-12 w-12 object-contain border p-1 mr-3"
           alt=""
         />
-        <p className="flex-1 font-bold">{username}</p>
+        {session ? (
+          <p
+            className="flex-1 font-bold cursor-pointer"
+            onClick={() => router.push(`/profile/${username}`)}>
+            {username}
+          </p>
+        ) : (
+          <p className="flex-1 font-bold">{username}</p>
+        )}
         <DotsHorizontalIcon className="h-5" />
       </div>
 
@@ -155,13 +168,14 @@ const Post = ({ id, username, userImg, img, caption }) => {
       {/* Input Box */}
       {session && (
         <form onSubmit={sendComment} className="flex items-center p-4">
-          <EmojiHappyIcon className="h-7" />
-          <input
-            type="text"
+          {/* <EmojiHappyIcon className="h-7" /> */}
+          <InputEmoji
             value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            onChange={setComment}
             placeholder="Add a comment"
-            className="border-none flex-1 focus:ring-0 outline-none"
+            borderColor={`${theme === "dark" ? "#000" : "#fff"}`}
+            theme={`${theme === "dark" ? "dark" : "light"}`}
+            className="border-none flex-1 focus:ring-0 outline-none bg-white text-black dark:bg-black dark:text-white"
           />
           <button
             type="submit"
