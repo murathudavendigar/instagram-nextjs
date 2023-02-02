@@ -12,8 +12,8 @@ const signInPage = ({ providers }) => {
         <img
           className="w-80"
           src={`${
-            theme === "dark"
-              ? "https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
+            theme === "light"
+              ? "https://logos-download.com/wp-content/uploads/2016/03/Instagram_Logo_2016.png"
               : "https://i0.wp.com/www.christinasandsengen.com/wp-content/uploads/2014/09/instagram-logo-black-on-white.png"
           }`}
           alt=""
