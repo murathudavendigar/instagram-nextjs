@@ -104,14 +104,14 @@ const Post = ({ id, username, userImg, img, caption, timestamp }) => {
             onClick={() => router.push(`/profile/${username}`)}>
             {username} •{" "}
             <Moment fromNow className="pl-1 font-semibold text-sm">
-              {timestamp.toDate()}
+              {timestamp?.toDate()}
             </Moment>
           </p>
         ) : (
           <p className="flex-1 font-bold">
             {username} •{" "}
             <Moment fromNow className="pl-1 font-semibold text-sm">
-              {timestamp.toDate()}
+              {timestamp?.toDate()}
             </Moment>
           </p>
         )}
