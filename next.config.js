@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     domains: [
       "cdn-icons-png.flaticon.com",
-      "marka-logo.com",
+      "logos-download.com",
       "i0.wp.com",
       "upload.wikimedia.org",
     ],
