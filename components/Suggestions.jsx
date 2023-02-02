@@ -6,6 +6,7 @@ const Suggestions = () => {
   useEffect(() => {
     Array.from({ length: 5 }).forEach(() => {
       SUGGESTIONS_USERS.push(createRandomUser());
+      if (SUGGESTIONS_USERS.length > 5) SUGGESTIONS_USERS.shift();
     });
 
     setSuggestionsUsers(SUGGESTIONS_USERS);

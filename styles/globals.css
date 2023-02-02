@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply scrollbar scrollbar-track-black scrollbar-thumb-orange-600;
+  }
+}
+
 @layer components {
   .navButton {
     @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-150 ease-in-out;

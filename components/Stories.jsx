@@ -9,6 +9,7 @@ const Stories = () => {
   useEffect(() => {
     Array.from({ length: 20 }).forEach(() => {
       USERS.push(createRandomUser());
+      if (USERS.length > 20) USERS.shift();
     });
 
     setRandomUsers(USERS);

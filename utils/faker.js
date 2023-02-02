@@ -5,7 +5,7 @@ export const SUGGESTIONS_USERS = [];
 export const RANDOM_POST = [];
 
 export function createRandomUser() {
-  let randomNumber = Math.random() * 500;
+  // let randomNumber = Math.random() * 500;
   return {
     userId: faker.datatype.uuid(),
     username: faker.internet.userName(),
@@ -16,9 +16,9 @@ export function createRandomUser() {
     registeredAt: faker.date.past(),
     // location: faker.random.locale(),
     companyName: faker.company.name(),
-    postImg: `https://source.unsplash.com/random/800x600?sig=${
-      randomNumber + 1
-    }`,
+    // postImg: `https://source.unsplash.com/random/800x600?sig=${
+    //   randomNumber + 1
+    // }`,
     caption: faker.lorem.paragraph(),
   };
 }

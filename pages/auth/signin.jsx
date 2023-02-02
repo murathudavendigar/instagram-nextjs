@@ -17,15 +17,19 @@ const signInPage = ({ providers }) => {
               : "https://i0.wp.com/www.christinasandsengen.com/wp-content/uploads/2014/09/instagram-logo-black-on-white.png"
           }`}
           alt=""
+          loading="lazy"
         />
-        <p className="font-medium italic">
-          This is not a Real app, it is built for education purposes only
+        <p className="font-medium italic mb-3">
+          This is not a Real app, it is built for education
         </p>
-        <div className="mt-40">
+        <p className="font-medium italic">
+          Captain Price | {new Date().getFullYear()}
+        </p>
+        <div className="mt-32">
           {Object.values(providers).map((provider) => (
             <div key={provider.name}>
               <button
-                className="p-3 bg-blue-500 rounded-lg text-white"
+                className="p-3 bg-blue-500 rounded-lg text-white hover:bg-blue-700 transition-all"
                 onClick={() => signIn(provider.id, { callbackUrl: "/" })}>
                 Sign in with {provider.name}
               </button>

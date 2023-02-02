@@ -35,7 +35,7 @@ const profile = () => {
   }, []);
 
   return (
-    <>
+    <div className="bg-gray-50 text-black dark:bg-black dark:text-white">
       <Header />
       <main className="grid grid-cols-1 md:grid-cols-2 mx-auto md:max-w-3xl xl:grid-cols-3 xl:max-w-6xl">
         <section className="col-span-2">
@@ -69,7 +69,7 @@ const profile = () => {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 
