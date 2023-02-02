@@ -132,7 +132,7 @@ const Modal = () => {
                       <input
                         type="text"
                         ref={captionRef}
-                        className="border-none focus:ring-0 w-full text-center"
+                        className="border-none focus:ring-0 w-full text-center text-black"
                         placeholder="Please enter a caption..."
                       />
                     </div>
