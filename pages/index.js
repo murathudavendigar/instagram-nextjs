@@ -5,7 +5,7 @@ import Modal from "../components/Modal";
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 h-screen ">
+    <div className="bg-gray-50 text-black dark:bg-black dark:text-white">
       <Head>
         <title>Instagram | Captain Price</title>
         <link rel="icon" href="../public/favicon.ico" />
