@@ -47,6 +47,7 @@ const profile = () => {
               userImg={post.data().profileImg}
               img={post.data().image}
               caption={post.data().caption}
+              timestamp={post.data().timestamp}
             />
           ))}
         </section>
