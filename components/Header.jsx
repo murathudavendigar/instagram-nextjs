@@ -88,7 +88,7 @@ const Header = () => {
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon onClick={() => router.push("/")} className="navButton" />
           <MenuIcon
-            className="h-6 md:hidden cursor-pointer"
+            className="h-7 md:hidden cursor-pointer"
             onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
           />
 
@@ -115,7 +115,7 @@ const Header = () => {
                 onClick={signOut}
                 src={session?.user?.image}
                 alt="avatar"
-                className="h-10 w-10 rounded-full cursor-pointer"
+                className="h-7 w-7 md:h-10 md:w-10 rounded-full cursor-pointer"
               />
             </>
           ) : (
@@ -136,11 +136,8 @@ const Header = () => {
                   <PaperAirplaneIcon className="burgerButton rotate-45" />
                   <p className="text-base font-semibold">Messages</p>
                 </div>
-                <div className="burgerDiv">
-                  <PlusCircleIcon
-                    onClick={() => setOpen(true)}
-                    className="burgerButton"
-                  />
+                <div className="burgerDiv" onClick={() => setOpen(true)}>
+                  <PlusCircleIcon className="burgerButton" />
                   <p className="text-base font-semibold">Upload Post</p>
                 </div>
                 <div className="burgerDiv">
