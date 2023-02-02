@@ -108,7 +108,12 @@ const Post = ({ id, username, userImg, img, caption, timestamp }) => {
             </Moment>
           </p>
         ) : (
-          <p className="flex-1 font-bold">{username}</p>
+          <p className="flex-1 font-bold">
+            {username} •{" "}
+            <Moment fromNow className="pl-1 font-semibold text-sm">
+              {timestamp.toDate()}
+            </Moment>
+          </p>
         )}
         <DotsHorizontalIcon className="h-5" />
       </div>
