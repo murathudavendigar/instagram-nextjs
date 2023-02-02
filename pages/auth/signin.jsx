@@ -1,15 +1,21 @@
 import { getProviders, signIn } from "next-auth/react";
+import { useTheme } from "next-themes";
 import Header from "../../components/Header";
 
 //! BROWSER
 const signInPage = ({ providers }) => {
+  const { theme } = useTheme();
   return (
     <>
       <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen -mt-[68px] py-2 px-14 text-center">
+      <div className="flex flex-col items-center justify-center min-h-screen -mt-[68px] py-2 px-14 text-center bg-white text-black dark:bg-black dark:text-white">
         <img
           className="w-80"
-          src="https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
+          src={`${
+            theme === "dark"
+              ? "https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
+              : "https://i0.wp.com/www.christinasandsengen.com/wp-content/uploads/2014/09/instagram-logo-black-on-white.png"
+          }`}
           alt=""
         />
         <p className="font-medium italic">
