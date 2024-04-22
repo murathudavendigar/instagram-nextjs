@@ -23,7 +23,7 @@ const signInPage = ({ providers }) => {
           This is not a Real app, it is built for education
         </p>
         <p className="font-medium italic">
-          Captain Price | {new Date().getFullYear()}
+          John Price | {new Date().getFullYear()}
         </p>
         <div className="mt-32">
           {Object.values(providers).map((provider) => (
